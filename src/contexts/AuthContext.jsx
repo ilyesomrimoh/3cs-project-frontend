@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 const API_URL = 'http://localhost:5000';
+const DEMO_MODE = true;
+
 // Create auth context
 const AuthContext = createContext();
 
@@ -26,20 +28,27 @@ export function AuthProvider({ children }) {
     setLoading(true);
   
     try {
-      const response = await axios.post(`${API_URL}/login`, {
+     
+      if (DEMO_MODE) {
+      const userData = {
+        name: "Rahmoun",
+        token: "demo_token"
+
+       }
+      localStorage.setItem('authUser', JSON.stringify(userData));
+      setUser(userData);
+      } else {
+       const response = await axios.post(`${API_URL}/login`, {
         username: email,
         password: password,
       });
-  
       const { access_token, name } = response.data;
-
       const userData = {
         name,
         token: access_token,
       };
-  
-      localStorage.setItem('authUser', JSON.stringify(userData));
-      setUser(userData);
+
+      }
       return { success: true };
   
     } catch (error) {

@@ -25,7 +25,7 @@ const LiveAttendanceModal = ({
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Attendance for {classInfo.name} - Room {classInfo.selectedRoom || classInfo.room}
+                  Attendance for {classInfo.name} - {classInfo.selectedRoom || classInfo.room}
                 </h3>
                 <button
                   onClick={onClose}

@@ -4,11 +4,14 @@ import { generateAttendancePDF } from "../../pdfGenerator";
 
 
 const FullAttendanceModal = ({classInfo , classId ,  onClose  , results = []  , user }) => {
-  const [presentStudents, setPresentStudents] = useState(results);
-  const [allStudents, setAllStudents] = useState([]);
+  // const [presentStudents, setPresentStudents] = useState(results);
+  const presentStudents = [{ id: 1, name: 'omri mohammed ilyes' }, { id: 2, name: 'ilyes haddad' }];
+    const [allStudents, setAllStudents] = useState([]);
+  
   const [isGenerating, setIsGenerating] = useState(false);
 
   const fetchData = async () => {
+    
     const res2 = await getAllStudentsInClass(classId, user.token);
     if (res2) {
       setAllStudents(res2);
@@ -20,8 +23,9 @@ const FullAttendanceModal = ({classInfo , classId ,  onClose  , results = []  , 
     console.log(classInfo);
   },[])
 
-  const presentNamesSet = new Set(presentStudents);
+  const presentNamesSet = new Set(presentStudents.map(s => s.name));
   
+
     // Use names to mark present
  const  list = allStudents.map((student) => ({
      id: student.id,

@@ -26,7 +26,7 @@ export default function Login() {
     setIsLoading(true);
     
     try {
-      // For demo purposes: professor@university.edu / password123
+      // For demo purposes: 
       const result = await login(email, password);
       
       if (!result.success) {
@@ -110,7 +110,7 @@ export default function Login() {
           </form>
           
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500">Demo credentials:</p>
+            <p className="text-sm text-gray-500">   ⚠️ This is a demo version </p>
             <p className="text-sm text-gray-700 font-medium mt-1">
             a.rahmoune@esi-sba.dz / password
             </p>
